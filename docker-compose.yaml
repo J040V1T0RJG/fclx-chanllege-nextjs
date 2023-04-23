@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    networks:
+      - fclxnextjs
+
+  db:
+    image: keinos/sqlite3:latest
+    volumes: ./docker/dbdata:/var/lib/sqlite3
+    networks:
+      - fclxnextjs
+    
+  networks:
+    fclxnextjs:
+      driver: bridge
